@@ -1,0 +1,27 @@
+{
+  "name": "node-mailer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adhyan-jain/Node-Mailer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adhyan-jain/Node-Mailer/issues"
+  },
+  "homepage": "https://github.com/adhyan-jain/Node-Mailer#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.10.0",
+    "xlsx": "^0.18.5"
+  }
+}
