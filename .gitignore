@@ -1,2 +1,3 @@
 ~$birthdays.xlsx
 node_modules/
+.env
