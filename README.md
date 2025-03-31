@@ -1,1 +1,1 @@
-# Node-Mailer
+Node-Mailer is a Node.js application that automates sending birthday emails to a list of recipients. It reads an Excel file containing people's names, emails, and birthdates, checks if any of them have a birthday on the current date, and sends a personalized birthday email using Nodemailer. The process runs automatically on a scheduled cron job to check birthdays and send emails daily.
