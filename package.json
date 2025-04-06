@@ -20,6 +20,7 @@
   "homepage": "https://github.com/adhyan-jain/Node-Mailer#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
+    "express": "^5.1.0",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.10.0",
     "xlsx": "^0.18.5"
