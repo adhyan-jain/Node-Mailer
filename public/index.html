@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Birthday Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎂 Add a Birthday (because memory is hard)</h1>
+
+    <!-- don't judge the naming, it's 3AM -->
+    <form id="birthdayForm">
+      <input type="text" name="Name" placeholder="👤 Name" required />
+      <input type="email" name="Email" placeholder="📧 Email" required />
+      <input type="date" name="Birthday" required />
+      <button type="submit">➕ Add Birthday</button>
+    </form>
+
+    <p id="statusMessage">Nothing submitted yet. Waiting...</p>
+  </div>
+
+  <!-- JS magic here -->
+  <script src="script.js"></script>
+</body>
+</html>

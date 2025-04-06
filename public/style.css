@@ -1,0 +1,59 @@
+/* style.css - designed at peak chaos */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right,darkblue, lightblue, darkblue);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.container {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form input,
+form button {
+  display: block;
+  width: 95%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px dashed #aaa; /* because normal borders are boring */
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+form input:focus {
+  border-color: #555;
+  outline: none;
+}
+
+form button {
+  background-color: #6a1b9a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #8e24aa;
+}
+
+#statusMessage {
+  margin-top: 20px;
+  font-style: italic;
+  color: #444;
+}
