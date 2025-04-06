@@ -46,6 +46,17 @@ app.post("/add-birthday", (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🌐 Server started on http://localhost:${PORT}`));
 
+// Dowloading file
+app.get("/download", (req, res) => {
+  const file = path.join(__dirname, "birthdays.xlsx");
+  res.download(file, "birthdays.xlsx", (err) => {
+    if (err) {
+      console.error("Download error:", err);
+      res.status(500).send("Failed to download file");
+    }
+  });
+});
+
 
 // Nodemailer transporter setup
 const transporter = nodemailer.createTransport({
