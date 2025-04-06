@@ -2,7 +2,7 @@
 
 The app is deployed on **Render**.
 
-🔗 Live URL: https://your-app-name.onrender.com
+🔗 Live URL: https://birthday-mailer.onrender.com/
 
 ➡️ To download the updated Excel file with all submitted birthdays:  
-Visit https://your-app-name.onrender.com/download
+Visit https://birthday-mailer.onrender.com//download
