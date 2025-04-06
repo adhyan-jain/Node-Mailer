@@ -4,12 +4,41 @@ const xlsx = require("xlsx");
 const path = require("path");
 require("dotenv").config();
 
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+
 // Loading the Excel file
 const filePath = path.join(__dirname, "birthdays.xlsx");
 const workbook = xlsx.readFile(filePath);
 const sheetName = workbook.SheetNames[0];
 const sheet = workbook.Sheets[sheetName];
 const data = xlsx.utils.sheet_to_json(sheet);
+
+
+app.post("/add-birthday", (req, res) => {
+  const { Name, Email, Birthday } = req.body;
+
+  if (!Name || !Email || !Birthday) {
+    return res.status(400).send("All fields are required!");
+  }
+
+  // Load or create the workbook
+  const workbook = loadWorkbook();
+  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const data = xlsx.utils.sheet_to_json(sheet);
+
+  // Append new entry
+  data.push({ Name, Email, Birthday });
+
+  // Write back to Excel
+  const newSheet = xlsx.utils.json_to_sheet(data);
+  workbook.Sheets[workbook.SheetNames[0]] = newSheet;
+  xlsx.writeFile(workbook, filePath);
+
+  console.log(`➕ Added ${Name} (${Email}) to Excel.`);
+  res.send("Birthday added successfully!");
+});
 
 // Nodemailer transporter setup
 const transporter = nodemailer.createTransport({
