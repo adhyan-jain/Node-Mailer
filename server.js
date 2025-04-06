@@ -2,10 +2,10 @@ const nodemailer = require("nodemailer");
 const cron = require("node-cron");
 const xlsx = require("xlsx");
 const path = require("path");
+const express = require("express");
+const bodyParser = require("body-parser");
+const fs = require("fs");
 require("dotenv").config();
-
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
 
 
 // Loading the Excel file
@@ -14,31 +14,38 @@ const workbook = xlsx.readFile(filePath);
 const sheetName = workbook.SheetNames[0];
 const sheet = workbook.Sheets[sheetName];
 const data = xlsx.utils.sheet_to_json(sheet);
+const app = express();
 
+app.use(bodyParser.json());
+app.use(express.static("public"));
 
+// Append birthday data
 app.post("/add-birthday", (req, res) => {
   const { Name, Email, Birthday } = req.body;
 
   if (!Name || !Email || !Birthday) {
-    return res.status(400).send("All fields are required!");
+    return res.status(400).send("All fields are required.");
   }
 
-  // Load or create the workbook
-  const workbook = loadWorkbook();
-  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  // Append new entry to existing data
+  const newEntry = { Name, Email, Birthday };
+
+  const workbook = xlsx.readFile(filePath);
+  const sheetName = workbook.SheetNames[0];
+  const sheet = workbook.Sheets[sheetName];
   const data = xlsx.utils.sheet_to_json(sheet);
+  data.push(newEntry);
 
-  // Append new entry
-  data.push({ Name, Email, Birthday });
-
-  // Write back to Excel
-  const newSheet = xlsx.utils.json_to_sheet(data);
-  workbook.Sheets[workbook.SheetNames[0]] = newSheet;
+  const updatedSheet = xlsx.utils.json_to_sheet(data);
+  workbook.Sheets[sheetName] = updatedSheet;
   xlsx.writeFile(workbook, filePath);
 
-  console.log(`➕ Added ${Name} (${Email}) to Excel.`);
   res.send("Birthday added successfully!");
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🌐 Server started on http://localhost:${PORT}`));
+
 
 // Nodemailer transporter setup
 const transporter = nodemailer.createTransport({
